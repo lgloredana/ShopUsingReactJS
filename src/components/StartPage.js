@@ -8,15 +8,15 @@ class StartPage extends Component {
 
   render() {
     return (
-      <div class="box">
-        <div class="boxHeader"></div>
-        <div class="boxAddProducts">
-          <AddItemButton></AddItemButton>
+      <div className="box">
+        <div className="boxHeader"></div>
+        <div className="boxAddProducts">
+          <AddItemButton ></AddItemButton>
         </div>
-        <div class="boxProducts">
+        <div className="boxProducts">
           <ProductsContainer></ProductsContainer>
         </div>
-        <div class="boxCompare">
+        <div className="boxCompare">
           <CompareContainer></CompareContainer>
         </div>
       </div>
