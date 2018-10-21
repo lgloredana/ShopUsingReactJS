@@ -1,0 +1,21 @@
+{
+  "name": "shopusingreactjs",
+  "version": "1.0.0",
+  "description": "This project is using [babel/cli] go to [Babel](https://babeljs.io/docs/en/babel-cli) for more info.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgloredana/ShopUsingReactJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lgloredana/ShopUsingReactJS/issues"
+  },
+  "homepage": "https://github.com/lgloredana/ShopUsingReactJS#readme"
+}
