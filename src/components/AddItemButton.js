@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import ItemDetailsEdit from './ItemDetailsEdit';
 
 const customStyles = {
   content : {
@@ -34,7 +35,7 @@ class AddItemButton extends Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -53,17 +54,12 @@ class AddItemButton extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
+          <h1>Add Product</h1>
           <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
+           <ItemDetailsEdit></ItemDetailsEdit>
           </form>
+          <button onClick={this.closeModal}>close</button>
+         
         </Modal>
       </div>
     );
