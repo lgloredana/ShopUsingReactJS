@@ -21,7 +21,8 @@ class AddItemButton extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      bodyTet:'This text can be updated in modal 1'
     };
 
     this.openModal = this.openModal.bind(this);
@@ -55,9 +56,9 @@ class AddItemButton extends Component {
           contentLabel="Example Modal"
         >
           <h1>Add Product</h1>
-          <form>
+         
            <ItemDetailsEdit></ItemDetailsEdit>
-          </form>
+        
           <button onClick={this.closeModal}>close</button>
          
         </Modal>
