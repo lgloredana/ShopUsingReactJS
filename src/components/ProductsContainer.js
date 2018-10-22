@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import ProductItem from './ProductItem';
+import './ProductItem.css'
 
 class ProductsContainer extends Component {
 
   render() {
+    const products = this.props.products; 
     const productsItems = [];
-    this.props.products.forEach((product) => {
-      productsItems.push(<div>{product.name}</div>)
+    products.forEach((product) => {
+      console.log("product name " + product.name);
+      productsItems.push(<ProductItem key={product.name} productName={product.name} productPrice={product.price}></ProductItem>)
     });
 
     return (

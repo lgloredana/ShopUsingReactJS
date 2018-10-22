@@ -10,7 +10,7 @@ class StartPage extends Component {
     super(props);
     this.state = {
       compareList:[],
-      products:[new Product("p1", 1)]
+      products:[new Product("product orange", 222)]
     }
   }
   render() {
