@@ -9,6 +9,7 @@
     display: block;
     height: 100px;
     background-color: seagreen;
+    padding-left: 20px; 
 }
 .boxProducts{
     display: block;
@@ -26,4 +27,5 @@
     height: 100%;
     background: red;
     color: white;
-  }
+    padding-left: 20px; 
+}

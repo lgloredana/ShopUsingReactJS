@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import ItemDetailsEdit from './ItemDetailsEdit';
 import Product from './Product';
@@ -59,7 +58,6 @@ class AddItemButton extends Component {
  }
 
   render() {
-    const products = this.props.products;
     return (
       <div>
         <button onClick={this.openModal} >+ Add Products</button>

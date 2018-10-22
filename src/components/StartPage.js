@@ -21,7 +21,7 @@ class StartPage extends Component {
           <AddItemButton products={this.state.products}></AddItemButton>
         </div>
         <div className="boxProducts">
-          <ProductsContainer products={this.products}></ProductsContainer>
+          <ProductsContainer products={this.state.products}></ProductsContainer>
         </div>
         <div className="boxCompare">
           <CompareContainer products={this.state.compareList}></CompareContainer>
