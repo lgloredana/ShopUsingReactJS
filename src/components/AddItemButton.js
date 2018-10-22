@@ -70,9 +70,9 @@ class AddItemButton extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h1>Add Product</h1>
-           <ItemDetailsEdit itemName={this.state.itemName} itemPrice={this.state.itemPrice} onChange={this.handleChange}></ItemDetailsEdit>
-           <button onClick={this.closeModal}>close</button>
+          <div className='alert alert-primary'>Add Product</div>
+          <ItemDetailsEdit itemName={this.state.itemName} itemPrice={this.state.itemPrice} onChange={this.handleChange}></ItemDetailsEdit>
+          <button className="btn btn-success" onClick={this.closeModal}>close</button>
         </Modal>
       </div>
     );
