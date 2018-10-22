@@ -63,7 +63,6 @@ class AddItemButton extends Component {
     return (
       <div>
         <button onClick={this.openModal} >+ Add Products</button>
-        <p>{this.state.itemName}</p>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -75,7 +74,6 @@ class AddItemButton extends Component {
            <ItemDetailsEdit itemName={this.state.itemName} itemPrice={this.state.itemPrice} onChange={this.handleChange}></ItemDetailsEdit>
            <button onClick={this.closeModal}>close</button>
         </Modal>
-        <div>{this.itemPrice}</div>
       </div>
     );
   }
