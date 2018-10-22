@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import ItemDetailsEdit from './ItemDetailsEdit';
+import Product from './Product';
 
 const customStyles = {
   content : {
@@ -17,8 +18,8 @@ const customStyles = {
 Modal.setAppElement('#root')
 class AddItemButton extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       modalIsOpen: false,
@@ -46,6 +47,9 @@ class AddItemButton extends Component {
   closeModal() {
     console.log("print the name from modal --->" + this.state.itemName);
     console.log("print the price from modal --->" + this.state.itemPrice);
+    var newProd = new Product(this.state.itemName,  this.state.itemPrice);
+    this.props.products.push(newProd);
+    console.log("show the products list" + this.props.products.length);
     this.setState({modalIsOpen: false});
   }
 
@@ -55,7 +59,7 @@ class AddItemButton extends Component {
  }
 
   render() {
-    const { bodyText } = this.state;
+    const products = this.props.products;
     return (
       <div>
         <button onClick={this.openModal} >+ Add Products</button>
