@@ -17,25 +17,20 @@ class StartPage extends Component {
     this.updateProducts = this.updateProducts.bind(this);
   }
 
-  onAdd(){
+  updateProducts(){
     //update state of the StartPage in order to propagate to all sibling
     this.setState({});
   }
 
-  updateProducts(){
-    this.setState({});
-  }
-
   render() {
-
     return (
       <div className="box">
         <div className="boxHeader"></div>
         <div className="boxAddProducts">
-          <AddItemButton products={this.state.products} onAdd={this.onAdd}></AddItemButton>
+          <AddItemButton products={this.state.products} onAdd={this.updateProducts}></AddItemButton>
         </div>
         <div className="boxProducts">
-          <ProductsContainer products={this.state.products}  compareList={this.state.compareList}
+          <ProductsContainer products={this.state.products} compareList={this.state.compareList}
           propagateProductsChange={this.updateProducts}></ProductsContainer>
         </div>
         <div className="boxCompare">
