@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductItem from './ProductItem';
-import './ProductItem.css'
+import './ProductsContainer.css';
 
 class ProductsContainer extends Component {
 
@@ -18,7 +18,7 @@ class ProductsContainer extends Component {
     
 
     return (
-      <div>
+      <div className="boxProductsItems">
         {productsItems}
       </div>
     );

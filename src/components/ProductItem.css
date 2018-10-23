@@ -1,11 +1,12 @@
-.box {
-    display: block;
+.boxProductsEntity {
+    display: inline-table;
     /* position: absolute; */
     top: 10px;
     width: 20px;
     height: 200px;
     color: white;
-    /* background-color: yellow; */
+    padding-left: 10px;
+    background-color: yellow;
 }
 .boxImg {
     display: inline-block;
