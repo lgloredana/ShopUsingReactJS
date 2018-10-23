@@ -13,7 +13,7 @@ class ProductItem extends Component{
                 <img src={productImg} alt="no-img-product"/>
                 <button name="btnRemove" className="btnUpRight" value={productName} onClick={this.props.onRemove}>Remove</button>
                 <button name="btnEdit" className="btnDownLeft" value={productName + "/" + productPrice} onClick={this.props.onEdit}>Edit</button>
-                <button name="btnCompare" className="btnDownRight">Compare</button>
+                <button name="btnCompare" className="btnDownRight" value={productName + "/" + productPrice} onClick={this.props.onCompare}>Compare</button>
             </div>
             <p></p>
             <div className="boxDetails">

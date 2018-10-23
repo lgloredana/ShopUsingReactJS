@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ProductItem from './ProductItem';
 import ItemDetailsEdit from './ItemDetailsEdit';
+import Product from './Product';
 import './ProductsContainer.css';
 
 const customStyles = {
@@ -28,6 +29,8 @@ class ProductsContainer extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getProductFromString = this.getProductFromString.bind(this);
+    this.onCompare = this.onCompare.bind(this);
   }
 
   onRemove(e){
@@ -40,17 +43,24 @@ class ProductsContainer extends Component {
     this.props.propagateProductsChange();
   }
 
-  openModal(e) {
-    let str = e.target.value; 
+  getProductFromString(str){
     let searchTerm = '/';
     let indexOfFirst = str.indexOf(searchTerm);
     let name = str.substring(0, indexOfFirst);
     let price = str.substring(indexOfFirst+1);
+
+    return new Product(name, price);
+  }
+
+
+  openModal(e) {
+    let str = e.target.value; 
+    let product = this.getProductFromString(str);
     this.setState({
       modalIsOpen: true,
-      oldName: name,
-      itemName: name,
-      itemPrice: price
+      oldName: product.name,
+      itemName: product.name,
+      itemPrice: product.price
     });
   }
 
@@ -89,6 +99,13 @@ class ProductsContainer extends Component {
     this.setState({ [name]: value });
  }
 
+ onCompare(e){
+   let str = e.target.value;
+   let product = this.getProductFromString(str);
+  this.props.compareList.push(product); 
+  this.props.propagateProductsChange();
+ }
+
   render() {
     let productsItems = [];
     let products = this.props.products;
@@ -97,7 +114,8 @@ class ProductsContainer extends Component {
       productsItems.push(<ProductItem key={products[index].name} 
           productName={products[index].name} productPrice={products[index].price} 
           onRemove={this.onRemove}
-          onEdit={this.openModal}></ProductItem>);
+          onEdit={this.openModal}
+          onCompare={this.onCompare}></ProductItem>);
     }
     
 

@@ -33,7 +33,7 @@ class StartPage extends Component {
           propagateProductsChange={this.updateProducts}></ProductsContainer>
         </div>
         <div className="boxCompare">
-          <CompareContainer products={this.state.compareList}></CompareContainer>
+          <CompareContainer compareList={this.state.compareList}></CompareContainer>
         </div>
       </div>
     );
