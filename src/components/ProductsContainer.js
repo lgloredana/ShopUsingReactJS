@@ -66,6 +66,7 @@ class ProductsContainer extends Component {
 
   closeModal() {
     let products = this.props.products;
+    let compareList = this.props.compareList;
     console.log("-----new value----");
     console.log('name: ' + this.state.itemName);
     console.log('price: ' + this.state.itemPrice);
@@ -82,6 +83,12 @@ class ProductsContainer extends Component {
           if(products[index].name === this.state.oldName){
             products[index].name = this.state.itemName;
             products[index].price = this.state.itemPrice;
+          }
+        }
+        for(let index=0; index<compareList.length; index++){
+          if(compareList[index].name === this.state.oldName){
+            compareList[index].name = this.state.itemName;
+            compareList[index].price = this.state.itemPrice;
           }
         }
         this.setState(
