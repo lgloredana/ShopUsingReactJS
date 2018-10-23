@@ -45,17 +45,28 @@ class AddItemButton extends Component {
 
   closeModal() {
     let newProd = new Product(this.state.itemName,  this.state.itemPrice);
-    this.props.products.push(newProd);
-    console.log("products.length = " + this.props.products.length);
-    this.setState(
-      {
-        modalIsOpen: false,
-        itemName: '',
-        itemPrice: ''
-      });
+    let products = this.props.products;
+    console.log("products.length = " + products.length);
+    let nameUnique = true;
+    for(let i = 0; i<products.length; i++){
+      if(products[i].name === newProd.name){
+        nameUnique = false;
+      }
+    }
 
-    //send an event to the start page to update the products container
-    this.props.onAdd();
+    if (nameUnique && newProd.price > 0 ){
+      products.push(newProd);
+      this.setState(
+        {
+          modalIsOpen: false,
+          itemName: '',
+          itemPrice: ''
+        });
+  
+      //send an event to the start page to update the products container
+      this.props.onAdd();
+    }
+    
   }
 
   handleChange(e) {

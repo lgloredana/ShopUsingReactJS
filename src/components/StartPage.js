@@ -13,7 +13,6 @@ class StartPage extends Component {
       products:[], 
       filterText:''
     }
-    this.onAdd = this.onAdd.bind(this);
     this.updateProducts = this.updateProducts.bind(this);
   }
 
