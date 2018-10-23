@@ -59,19 +59,29 @@ class ProductsContainer extends Component {
     console.log("-----new value----");
     console.log('name: ' + this.state.itemName);
     console.log('price: ' + this.state.itemPrice);
-    for(let index=0; index<products.length; index++){
-      if(products[index].name === this.state.oldName){
-        products[index].name = this.state.itemName;
-        products[index].price = this.state.itemPrice;
+
+    let nameUnique = true;
+    for(let i = 0; i<products.length; i++){
+      if(products[i].name === this.state.itemName){
+        nameUnique = false;
       }
     }
-    this.setState(
-      {
-        modalIsOpen: false,
-        itemName: '',
-        itemPrice: ''
-      });
-    this.props.propagateProductsChange();
+
+    if (nameUnique && this.state.itemPrice > 0 ){
+        for(let index=0; index<products.length; index++){
+          if(products[index].name === this.state.oldName){
+            products[index].name = this.state.itemName;
+            products[index].price = this.state.itemPrice;
+          }
+        }
+        this.setState(
+          {
+            modalIsOpen: false,
+            itemName: '',
+            itemPrice: ''
+          });
+        this.props.propagateProductsChange();
+    }
   }
 
   handleChange(e) {
