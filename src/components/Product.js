@@ -3,5 +3,14 @@ class Product{
         this.name = name;
         this.price = price;
     };
+
+    // Getter
+    name() {
+        return this.name;
+    }
+    price() {
+        return this.price;
+    }
+  
 }
 export default Product;
