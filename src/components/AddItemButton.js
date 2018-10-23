@@ -54,9 +54,8 @@ class AddItemButton extends Component {
         itemPrice: ''
       });
 
+    //send an event to the start page to update the products container
     this.props.onAdd();
-
-      //send an event to the start page to update the products container
   }
 
   handleChange(e) {

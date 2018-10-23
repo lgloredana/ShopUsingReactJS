@@ -14,10 +14,15 @@ class StartPage extends Component {
       filterText:''
     }
     this.onAdd = this.onAdd.bind(this);
+    this.updateProducts = this.updateProducts.bind(this);
   }
 
   onAdd(){
     //update state of the StartPage in order to propagate to all sibling
+    this.setState({});
+  }
+
+  updateProducts(){
     this.setState({});
   }
 
@@ -30,7 +35,8 @@ class StartPage extends Component {
           <AddItemButton products={this.state.products} onAdd={this.onAdd}></AddItemButton>
         </div>
         <div className="boxProducts">
-          <ProductsContainer products={this.state.products}  compareList={this.state.compareList}></ProductsContainer>
+          <ProductsContainer products={this.state.products}  compareList={this.state.compareList}
+          propagateProductsChange={this.updateProducts}></ProductsContainer>
         </div>
         <div className="boxCompare">
           <CompareContainer products={this.state.compareList}></CompareContainer>
