@@ -34,13 +34,6 @@ class ProductsContainer extends Component {
   }
 
   onRemove(e){
-    // let products = this.props.products;
-    // for(let index=0; index<products.length; index++){
-    //   if(products[index].name === e.target.value){
-    //     this.props.products.splice(index,1);
-    //   }
-    // }
-
     let compareList = this.props.compareList;
     for(let index=0; index<compareList.length; index++){
       if(compareList[index].name === e.target.value){
@@ -122,7 +115,8 @@ class ProductsContainer extends Component {
           productName={products[index].name} productPrice={products[index].price} 
           onRemove={this.onRemove}
           onEdit={this.openModal}
-          onCompare={this.onCompare}></ProductItem>);
+          onCompare={this.onCompare}
+          ></ProductItem>);
     }
     
 
