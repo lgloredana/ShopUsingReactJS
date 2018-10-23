@@ -23,7 +23,7 @@ class AddItemButton extends Component {
     this.state = {
       modalIsOpen: false,
       itemName: '',
-      itemPrice: '',
+      itemPrice: ''
     };
 
     this.openModal = this.openModal.bind(this);
@@ -44,12 +44,19 @@ class AddItemButton extends Component {
   }
 
   closeModal() {
-    console.log("print the name from modal --->" + this.state.itemName);
-    console.log("print the price from modal --->" + this.state.itemPrice);
-    var newProd = new Product(this.state.itemName,  this.state.itemPrice);
+    let newProd = new Product(this.state.itemName,  this.state.itemPrice);
     this.props.products.push(newProd);
-    console.log("show the products list" + this.props.products.length);
-    this.setState({modalIsOpen: false});
+    console.log("products.length = " + this.props.products.length);
+    this.setState(
+      {
+        modalIsOpen: false,
+        itemName: '',
+        itemPrice: ''
+      });
+
+    this.props.onAdd();
+
+      //send an event to the start page to update the products container
   }
 
   handleChange(e) {
@@ -61,6 +68,7 @@ class AddItemButton extends Component {
     return (
       <div>
         <button onClick={this.openModal} >+ Add Products</button>
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -70,7 +78,7 @@ class AddItemButton extends Component {
         >
           <div className='alert alert-primary'>Add Product</div>
           <ItemDetailsEdit itemName={this.state.itemName} itemPrice={this.state.itemPrice} onChange={this.handleChange}></ItemDetailsEdit>
-          <button className="btn btn-success" onClick={this.closeModal}>close</button>
+          <button className="btn btn-success" onClick={this.closeModal}>Add</button>
         </Modal>
       </div>
     );

@@ -17,6 +17,7 @@ class ItemDetailsEdit extends Component{
                         <input className="form-control" type="number" required min='0' name="itemPrice" placeholder="product price" 
                          value={itemPrice} onChange={onChange}/>
                     </div>
+                    
                 </form>
                 <br/>
             </div>            

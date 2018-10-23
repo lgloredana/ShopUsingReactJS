@@ -5,12 +5,17 @@ import './ProductItem.css'
 class ProductsContainer extends Component {
 
   render() {
-    const products = this.props.products; 
-    const productsItems = [];
-    products.forEach((product) => {
-      console.log("product name " + product.name);
-      productsItems.push(<ProductItem key={product.name} productName={product.name} productPrice={product.price}></ProductItem>)
-    });
+    let productsItems = [];
+    let products = this.props.products 
+    // this.props.products.forEach((product) => {
+    //   productsItems.push(<ProductItem key={product.name} 
+    //         productName={product.name} productPrice={product.price}></ProductItem>)
+    // });
+    for(let index=0; index<products.length; index++){
+      productsItems.push(<ProductItem key={products[index].name} productName={products[index].name} 
+                                productPrice={products[index].price}></ProductItem>);
+    }
+    
 
     return (
       <div>
