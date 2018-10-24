@@ -4,8 +4,6 @@ class CompareContainer extends Component {
 
   render() {
     let compareList = this.props.compareList;
-    console.log("--------------compareList-------------------");
-    console.log(compareList);
     let prodNameColls = [];
     let prodPriceColls = [];
     for(let index=0; index<compareList.length; index++){

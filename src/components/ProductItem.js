@@ -12,15 +12,23 @@ class ProductItem extends Component{
         }
         this.onCompare = this.onCompare.bind(this);
         this.onRemove = this.onRemove.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+    }
+    onEdit(e){
+        this.props.onEdit(e);
     }
 
     onCompare(e){
-        this.state.showCompareBtn = false;
+        this.setState({
+            showCompareBtn: false
+        })
         this.props.onCompare(e);
     }
 
     onRemove(e){
-        this.state.showCompareBtn = true;
+        this.setState({
+            showCompareBtn: true
+        });
         this.props.onRemove(e);
     }
 
@@ -32,7 +40,7 @@ class ProductItem extends Component{
             buttons=<div>
                         <button name="btnEdit" className="btnDownLeft" 
                                 value={productName + "/" + productPrice} 
-                                onClick={this.props.onEdit}>Edit</button>
+                                onClick={this.onEdit}>Edit</button>
                         <button name="btnCompare" className="btnDownRight" 
                                 value={productName + "/" + productPrice} 
                                 onClick={this.onCompare}>Compare</button>
@@ -44,7 +52,7 @@ class ProductItem extends Component{
                                 onClick={this.onRemove}>Remove</button>
                         <button name="btnEdit" className="btnDownLeft" 
                                 value={productName + "/" + productPrice} 
-                                onClick={this.props.onEdit}>Edit</button>
+                                onClick={this.onEdit}>Edit</button>
                     </div>
         }
         return (  <div className="boxProductsEntity">

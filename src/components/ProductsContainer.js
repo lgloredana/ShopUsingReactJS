@@ -43,16 +43,6 @@ class ProductsContainer extends Component {
     this.props.propagateProductsChange();
   }
 
-  getProductFromString(str){
-    let searchTerm = '/';
-    let indexOfFirst = str.indexOf(searchTerm);
-    let name = str.substring(0, indexOfFirst);
-    let price = str.substring(indexOfFirst+1);
-
-    return new Product(name, price);
-  }
-
-
   openModal(e) {
     let str = e.target.value; 
     let product = this.getProductFromString(str);
@@ -65,32 +55,28 @@ class ProductsContainer extends Component {
   }
 
   closeModal() {
+    let newProd = new Product(this.state.itemName, this.state.itemPrice)
     let products = this.props.products;
     let compareList = this.props.compareList;
-    console.log("-----new value----");
-    console.log('name: ' + this.state.itemName);
-    console.log('price: ' + this.state.itemPrice);
+    let oldName = this.state.oldName;
 
-    let nameUnique = true;
-    for(let i = 0; i<products.length; i++){
-      if(products[i].name === this.state.itemName){
-        nameUnique = false;
-      }
-    }
+    let nameUnique = products.findIndex((prodItem) => prodItem.name === newProd.name); 
+    
+    if (nameUnique === -1 && newProd.price > 0 ){
 
-    if (nameUnique && this.state.itemPrice > 0 ){
-        for(let index=0; index<products.length; index++){
-          if(products[index].name === this.state.oldName){
-            products[index].name = this.state.itemName;
-            products[index].price = this.state.itemPrice;
-          }
-        }
-        for(let index=0; index<compareList.length; index++){
-          if(compareList[index].name === this.state.oldName){
-            compareList[index].name = this.state.itemName;
-            compareList[index].price = this.state.itemPrice;
-          }
-        }
+        //update products list which will propagate to it's childrens like ProductItems wich will generate a reset
+        let indexP = products.findIndex( (prodItem) => prodItem.name === oldName)
+        products[indexP].name = newProd.name;
+        products[indexP].price = newProd.price;
+        
+        //update the compare list, not sure if this is the best approch to generate an update on a sibling, 
+        // maybe using an event dispathcher is better.
+        let indexC = compareList.findIndex( (compItem) => compItem.name === oldName)
+        if (indexC !== - 1) { 
+          compareList[indexC].name = newProd.name;
+          compareList[indexC].price = newProd.index;
+        };
+
         this.setState(
           {
             modalIsOpen: false,
@@ -102,16 +88,31 @@ class ProductsContainer extends Component {
   }
 
   handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
- }
+      const { name, value } = e.target;
+      this.setState({ [name]: value });
+  }
 
- onCompare(e){
-   let str = e.target.value;
-   let product = this.getProductFromString(str);
-  this.props.compareList.push(product); 
-  this.props.propagateProductsChange();
- }
+  getProductFromString(str){
+    let searchTerm = '/';
+    let indexOfFirst = str.indexOf(searchTerm);
+    let name = str.substring(0, indexOfFirst);
+    let price = str.substring(indexOfFirst+1);
+
+    return new Product(name, price);
+  }
+
+  onCompare(e){
+    let str = e.target.value;
+    //the value frome the target containes prodoct infos, 
+    //if the product haded more infos than another solutin is appropiate like value should have only the product key
+    let product = this.getProductFromString(str); 
+    
+    //again an update on a sibling, maybe an event sistem is better
+    this.props.compareList.push(product); 
+
+    //this is a functin implemented on the parent container
+    this.props.propagateProductsChange();
+  }
 
   render() {
     let productsItems = [];
@@ -119,14 +120,14 @@ class ProductsContainer extends Component {
 
     for(let index=0; index<products.length; index++){
       productsItems.push(<ProductItem key={products[index].name} 
-          productName={products[index].name} productPrice={products[index].price} 
-          onRemove={this.onRemove}
-          onEdit={this.openModal}
-          onCompare={this.onCompare}
-          ></ProductItem>);
-    }
+                              productName={products[index].name} productPrice={products[index].price} 
+                              onRemove={this.onRemove}
+                              onEdit={this.openModal}
+                              onCompare={this.onCompare}
+                              showCompareBtn={true}>
+                        </ProductItem>);
+    };
     
-
     return (
       <div className="boxProductsItems">
         {productsItems}

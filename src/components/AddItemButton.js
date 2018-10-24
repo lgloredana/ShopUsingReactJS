@@ -40,15 +40,9 @@ class AddItemButton extends Component {
   closeModal() {
     let newProd = new Product(this.state.itemName,  this.state.itemPrice);
     let products = this.props.products;
-    console.log("products.length = " + products.length);
-    let nameUnique = true;
-    for(let i = 0; i<products.length; i++){
-      if(products[i].name === newProd.name){
-        nameUnique = false;
-      }
-    }
+    let nameUnique = products.findIndex((prodItem) => prodItem.name === newProd.name); 
 
-    if (nameUnique && newProd.price > 0 ){
+    if (nameUnique === -1 && newProd.price > 0 ){
       products.push(newProd);
       this.setState(
         {
