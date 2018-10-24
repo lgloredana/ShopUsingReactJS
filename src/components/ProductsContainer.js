@@ -74,7 +74,7 @@ class ProductsContainer extends Component {
         let indexC = compareList.findIndex( (compItem) => compItem.name === oldName)
         if (indexC !== - 1) { 
           compareList[indexC].name = newProd.name;
-          compareList[indexC].price = newProd.index;
+          compareList[indexC].price = newProd.price;
         };
 
         this.setState(
