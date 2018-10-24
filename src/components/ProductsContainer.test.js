@@ -5,6 +5,6 @@ import ProductsContainer from './ProductsContainer';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ProductsContainer products compareList propagateProductsChangew/>, div);
+  ReactDOM.render(<ProductsContainer products compareList/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
