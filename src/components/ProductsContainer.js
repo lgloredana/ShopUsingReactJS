@@ -17,6 +17,9 @@ const customStyles = {
 };
 
 class ProductsContainer extends Component {
+
+  searchTerm =  '/';
+
   constructor(props){
     super(props);
     this.state = {
@@ -29,7 +32,6 @@ class ProductsContainer extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.getProductFromString = this.getProductFromString.bind(this);
     this.onCompare = this.onCompare.bind(this);
   }
 
@@ -45,12 +47,14 @@ class ProductsContainer extends Component {
 
   openModal(e) {
     let str = e.target.value; 
-    let product = this.getProductFromString(str);
+    let [name, price, showCompareBtn] = str.split(this.searchTerm);
+    let product = new Product(name, price);
     this.setState({
       modalIsOpen: true,
       oldName: product.name,
       itemName: product.name,
-      itemPrice: product.price
+      itemPrice: product.price,
+      showCompareBtn: showCompareBtn
     });
   }
 
@@ -92,21 +96,12 @@ class ProductsContainer extends Component {
       this.setState({ [name]: value });
   }
 
-  getProductFromString(str){
-    let searchTerm = '/';
-    let indexOfFirst = str.indexOf(searchTerm);
-    let name = str.substring(0, indexOfFirst);
-    let price = str.substring(indexOfFirst+1);
-
-    return new Product(name, price);
-  }
-
   onCompare(e){
     let str = e.target.value;
     //the value frome the target containes prodoct infos, 
     //if the product haded more infos than another solutin is appropiate like value should have only the product key
-    let product = this.getProductFromString(str); 
-    
+    let [name, price] = str.split(this.searchTerm); 
+    let product = new Product(name, price);
     //again an update on a sibling, maybe an event sistem is better
     this.props.compareList.push(product); 
 

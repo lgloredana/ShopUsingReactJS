@@ -35,11 +35,12 @@ class ProductItem extends Component{
     render(){
         const productName = this.props.productName;
         const productPrice = this.props.productPrice;
+        const showCompareBtn = this.state.showCompareBtn;
         let buttons;
         if(this.state.showCompareBtn){
             buttons=<div>
                         <button name="btnEdit" className="btnDownLeft" 
-                                value={productName + "/" + productPrice} 
+                                value={productName + "/" + productPrice + '/' + showCompareBtn } 
                                 onClick={this.onEdit}>Edit</button>
                         <button name="btnCompare" className="btnDownRight" 
                                 value={productName + "/" + productPrice} 
@@ -51,7 +52,7 @@ class ProductItem extends Component{
                                 value={productName} 
                                 onClick={this.onRemove}>Remove</button>
                         <button name="btnEdit" className="btnDownLeft" 
-                                value={productName + "/" + productPrice} 
+                                value={productName + "/" + productPrice + '/' + showCompareBtn } 
                                 onClick={this.onEdit}>Edit</button>
                     </div>
         }
