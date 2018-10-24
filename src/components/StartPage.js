@@ -10,8 +10,7 @@ class StartPage extends Component {
     super(props);
     this.state = {
       compareList:[],
-      products:[], 
-      filterText:''
+      products:[]
     }
     this.updateProducts = this.updateProducts.bind(this);
   }
