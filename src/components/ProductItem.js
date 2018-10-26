@@ -32,7 +32,7 @@ class ProductItem extends Component{
         if(this.props.showCompareBtn){
             buttons=<div>
                         <button name="btnEdit" className="btnDownLeft" 
-                                value={productName + "/" + productPrice + '/' + showCompareBtn } 
+                                value={productName + "/" + productPrice} 
                                 onClick={this.onEdit}>Edit</button>
                         <button name="btnCompare" className="btnDownRight" 
                                 value={productName + "/" + productPrice} 

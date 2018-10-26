@@ -47,14 +47,13 @@ class ProductsContainer extends Component {
 
   openModal(e) {
     let str = e.target.value; 
-    let [name, price, showCompareBtn] = str.split(this.searchTerm);
+    let [name, price] = str.split(this.searchTerm);
     let product = new Product(name, price);
     this.setState({
       modalIsOpen: true,
       oldName: product.name,
       itemName: product.name,
-      itemPrice: product.price,
-      showCompareBtn: showCompareBtn
+      itemPrice: product.price
     });
   }
 
