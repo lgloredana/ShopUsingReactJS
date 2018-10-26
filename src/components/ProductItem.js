@@ -7,37 +7,29 @@ import './ProductItem.css';
 class ProductItem extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            showCompareBtn:true
-        }
         this.onCompare = this.onCompare.bind(this);
         this.onRemove = this.onRemove.bind(this);
         this.onEdit = this.onEdit.bind(this);
     }
     onEdit(e){
         this.props.onEdit(e);
+        this.setState({});
     }
 
     onCompare(e){
-        this.setState({
-            showCompareBtn: false
-        })
         this.props.onCompare(e);
     }
 
     onRemove(e){
-        this.setState({
-            showCompareBtn: true
-        });
         this.props.onRemove(e);
     }
 
     render(){
         const productName = this.props.productName;
         const productPrice = this.props.productPrice;
-        const showCompareBtn = this.state.showCompareBtn;
+        const showCompareBtn = this.props.showCompareBtn;
         let buttons;
-        if(this.state.showCompareBtn){
+        if(this.props.showCompareBtn){
             buttons=<div>
                         <button name="btnEdit" className="btnDownLeft" 
                                 value={productName + "/" + productPrice + '/' + showCompareBtn } 
@@ -48,12 +40,12 @@ class ProductItem extends Component{
                     </div>
         } else {
             buttons=<div>
-                        <button name="btnRemove" className="btnUpRight" 
-                                value={productName} 
-                                onClick={this.onRemove}>Remove</button>
                         <button name="btnEdit" className="btnDownLeft" 
                                 value={productName + "/" + productPrice + '/' + showCompareBtn } 
                                 onClick={this.onEdit}>Edit</button>
+                        <button name="btnRemove" className="btnUpRight" 
+                                value={productName} 
+                                onClick={this.onRemove}>Remove</button>
                     </div>
         }
         return (  <div className="boxProductsEntity">

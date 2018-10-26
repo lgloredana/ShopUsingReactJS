@@ -112,14 +112,16 @@ class ProductsContainer extends Component {
   render() {
     let productsItems = [];
     let products = this.props.products;
-
+    let compareList = this.props.compareList;
+    let show= true;
     for(let index=0; index<products.length; index++){
+      show = compareList.findIndex((itemC) => itemC.name === products[index].name)  === -1
       productsItems.push(<ProductItem key={products[index].name} 
                               productName={products[index].name} productPrice={products[index].price} 
                               onRemove={this.onRemove}
                               onEdit={this.openModal}
                               onCompare={this.onCompare}
-                              showCompareBtn={true}>
+                              showCompareBtn={show}>
                         </ProductItem>);
     };
     
