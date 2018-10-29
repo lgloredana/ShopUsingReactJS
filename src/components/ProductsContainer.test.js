@@ -8,3 +8,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<ProductsContainer products compareList/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+it('add new product reflects in the products list', () = {
+  describe
+});

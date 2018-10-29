@@ -7,8 +7,8 @@ class CompareContainer extends Component {
     let prodNameColls = [];
     let prodPriceColls = [];
     for(let index=0; index<compareList.length; index++){
-      prodNameColls.push(<div class="col">{compareList[index].name}</div>);
-      prodPriceColls.push(<div class="col">{compareList[index].price}</div>);
+      prodNameColls.push(<div className="col" key={compareList[index].name}>{compareList[index].name}</div>);
+      prodPriceColls.push(<div className="col" key={compareList[index].name}>{compareList[index].price}</div>);
     }
 
     return (

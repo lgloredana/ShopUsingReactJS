@@ -1,33 +1,36 @@
+h1{
+    /* text-align: center; */
+}
 .boxHeader{
     box-sizing: content-box;
     display: block;
     height: 100px;
     width:100%;
-    background-color: deepskyblue;
+    /* background-color: deepskyblue; */
 }
 .boxAddProducts{
     display: block;
     height: 100px;
-    background-color: seagreen;
+    /* background-color: seagreen; */
     padding-left: 20px; 
 }
 .boxProducts{
     display: block;
     height: 300px;
-    background-color: blue;
+    /* background-color: blue; */
     padding-left: 20px; 
 }
 .boxCompare{
     display: block;
     height: 500px;
-    background-color: darkolivegreen;
+    /* background-color: darkolivegreen; */
     padding-left: 20px; 
 }
 .box {
     display: inline-block;
     width: 100%;
     height: 100%;
-    background: red;
-    color: white;
+    /* background: red; */
+    /* color: white; */
     padding-left: 20px; 
   }
