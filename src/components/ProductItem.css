@@ -1,26 +1,27 @@
 .boxProductsEntity {
     display: inline-table;
+    /* display: inline-block; */
     /* position: absolute; */
     top: 10px;
     width: 20px;
     height: 200px;
     color: white;
     padding-left: 10px;
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 .boxImg {
-    display: inline-block;
+    display: flex;
     width: 200px;
     height: 200px;
     color: white;
     position: relative;
 }
 .boxDetails{
-    display: inline-block;
+    display: flex;
     width: 200px;
     height: 50px;
     color: black;
-    background-color: green;
+    /* background-color: green; */
     position: relative;
 }
 .btnUpRight{
@@ -48,11 +49,15 @@ img{
     position: absolute;
     top: 10px;
     left: 10px;
-    color: black;
+    /* color: cadetblue; */
+    font-weight: bold;
+    font-size: large;
 }
 .itemDetailsRight{
     position: absolute;
     top: 10px;
     right: 10px;
-    color: black;
+    font-weight: bold;
+    font-size: large;
+    color: cornflowerblue;
 }
