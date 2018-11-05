@@ -13,3 +13,6 @@ table{
 .price{
     font-weight: bold;
 }
+.myTestClass{
+    text-align: left;
+}
