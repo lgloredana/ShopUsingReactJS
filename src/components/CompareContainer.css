@@ -1,0 +1,15 @@
+.row-border-bottom{
+    border-bottom: solid;
+}
+table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+.trgrey{
+    background-color: #F1F1F1;
+}
+.price{
+    font-weight: bold;
+}
