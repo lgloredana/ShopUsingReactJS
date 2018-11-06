@@ -14,5 +14,5 @@ table{
     font-weight: bold;
 }
 .myTestClass{
-    text-align: left;
+    border: 1px;
 }
