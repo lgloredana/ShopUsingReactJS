@@ -26,6 +26,40 @@ class StartPage extends Component {
     const products = this.state.products;
     const compareList = this.state.compareList;
 
+    console.log('test code');
+
+    // function doAsyncTask(cb){
+    //     console.log("start executing asyncTask");
+    //     setTimeout(() => {
+    //         console.log("async task calling callback");
+    //         cb();
+    //     }, 20000);
+    // }
+    //
+    // doAsyncTask(() => console.log("callback called"));
+
+  // const hasError = false;
+  // function doAsyncTask(cb) {
+  //     console.log("start executing asyncTask");
+  //     let promise = new Promise((resolve, reject) => {
+  //         setTimeout(() => {
+  //             console.log("async task calling callback");
+  //             if(hasError){
+  //                 reject("msg err");
+  //             }else{
+  //                 resolve("msg succ");
+  //             }
+  //         }, 2000);
+  //     });
+  //     return promise;
+  // }
+  //
+  // doAsyncTask().then((msg) => console.log(msg), (err) => console.log(err));
+
+
+      let promise = Promise.resolve('succ');
+      promise.then((val) => console.log(val), () => console.log("err"));
+
     if (products.length > 0){
       productsContainer.push(<div className="boxProducts" key={products.length}>
                               <ProductsContainer products={this.state.products} compareList={this.state.compareList}
