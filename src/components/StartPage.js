@@ -57,6 +57,8 @@ class StartPage extends Component {
   // doAsyncTask().then((msg) => console.log(msg), (err) => console.log(err));
 
 
+      //add some comment for commit test
+
       let promise = Promise.resolve('succ');
       promise.then((val) => console.log(val), () => console.log("err"));
 
