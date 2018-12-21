@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StartPage from './StartPage';
+import ProductView from '../ProductIView';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<StartPage />, div);
+  ReactDOM.render(<ProductView key productName productPrice onRemove onEdit onCompare showCompareBtn />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

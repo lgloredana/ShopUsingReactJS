@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ItemDetailsEdit from './ItemDetailsEdit';
+import AddItemButton from '../AddItemButton';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ItemDetailsEdit itemName itemPrice onChange={function(){}} />, div);
+  ReactDOM.render(<AddItemButton />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

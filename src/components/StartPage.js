@@ -1,89 +1,95 @@
-import React, { Component } from 'react';
-import AddItemButton from './AddItemButton';
-import ProductsContainer from './ProductsContainer';
-import CompareContainer from './CompareContainer';
-import './StartPage.css';
-// import Product from './Product';
+import React, { Component } from 'react'
+import '../css/StartPage.css'
+import ProductEdit from "./ProductEdit";
+import CompareContainer from "./containers/CompareContainer";
+import ProductsContainer from './containers/ProductsContainer'
+import AddItemButton from "./AddItemButton";
+
 
 class StartPage extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      compareList:[],
-      products:[]
+    state = {
+        compareProducts:[{name: 'apple', price:23, isCompared: true}, {name: 'onion', price:55, isCompared: true}],
+        products:[{name: 'apple', price:23, isCompared: true}, {name: 'pie', price:33, isCompared: false},{name: 'onion', price:55, isCompared: true}, {name: 'eggplant', price:41, isCompared: false}],
+        editProductIsOpened: false,
+        saveProductIsOpened: false,
+        productToEdit: {}
+    };
+
+    onEdit(product){
+        this.setState({
+            editProductIsOpened: true,
+            productToEdit: product
+        })
     }
-    this.updateProducts = this.updateProducts.bind(this);
-  }
-
-  updateProducts(){
-    //update state of the StartPage in order to propagate to all sibling
-    this.setState({});
-  }
-
-  render() {
-    let productsContainer=[];
-    let compareContainer=[];
-    const products = this.state.products;
-    const compareList = this.state.compareList;
-
-    console.log('test code');
-
-    // function doAsyncTask(cb){
-    //     console.log("start executing asyncTask");
-    //     setTimeout(() => {
-    //         console.log("async task calling callback");
-    //         cb();
-    //     }, 20000);
-    // }
-    //
-    // doAsyncTask(() => console.log("callback called"));
-
-  // const hasError = false;
-  // function doAsyncTask(cb) {
-  //     console.log("start executing asyncTask");
-  //     let promise = new Promise((resolve, reject) => {
-  //         setTimeout(() => {
-  //             console.log("async task calling callback");
-  //             if(hasError){
-  //                 reject("msg err");
-  //             }else{
-  //                 resolve("msg succ");
-  //             }
-  //         }, 2000);
-  //     });
-  //     return promise;
-  // }
-  //
-  // doAsyncTask().then((msg) => console.log(msg), (err) => console.log(err));
-
-
-      //add some comment for commit test
-
-      let promise = Promise.resolve('succ');
-      promise.then((val) => console.log(val), () => console.log("err"));
-
-    if (products.length > 0){
-      productsContainer.push(<div className="boxProducts" key={products.length}>
-                              <ProductsContainer products={this.state.products} compareList={this.state.compareList}
-                              propagateProductsChange={this.updateProducts}></ProductsContainer>
-                            </div>);
+    openSaveModal(){
+        this.setState({
+            saveProductIsOpened:true
+        })
     }
-    if(compareList.length > 0 ){
-      compareContainer.push(<div className="boxCompare" key={compareList.length}>
-                          <CompareContainer compareList={this.state.compareList}></CompareContainer>
-                        </div>);
+    saveProduct(product){
+        this.setState((prevState) => ({
+                    editProductIsOpened: false,
+                    products: prevState.products.map((prod) => {
+                        if(prod.name === prevState.productToEdit.name){
+                            prod = product;
+                        }
+                        return prod;
+                    }),
+                    compareProducts: prevState.compareProducts.map((prod) => {
+                        if(prod.name === prevState.productToEdit.name){
+                            prod = product;
+                        }
+                        return prod;
+                    })
+                }))
     }
-    return (
-      <div className="box">
-        <div className="boxHeader"><h1>Compare Products</h1></div>
-        <div className="boxAddProducts">
-          <AddItemButton products={this.state.products} onAdd={this.updateProducts}></AddItemButton>
+
+    handleChangeList(product, isCompared){
+        this.setState((prevState) => ({
+            products:prevState.products.map((prod) => {
+                    if (prod.name === product.name) prod.isCompared = isCompared;
+                    return prod;
+                }
+            ),
+            compareProducts: isCompared ? [...prevState.compareProducts, product] : prevState.compareProducts.filter((prod) => (prod.name !== product.name))
+        }));
+    }
+
+    addProduct(product){
+        debugger;
+        this.setState((prevState) => ({
+            saveProductIsOpened: false,
+            products: [...prevState.products, product]
+        }))
+    }
+
+    render() {
+
+      return (
+        <div className="box">
+            <div className="boxHeader"><h1>Compare Products</h1></div>
+            <div className="boxAddProducts">
+              <AddItemButton
+                            openSaveModal={() => this.openSaveModal()}
+                            saveProductIsOpened={this.state.saveProductIsOpened}
+                             editProductIsOpened={this.state.editProductIsOpened}
+                             addProduct={(product) => this.addProduct(product)}/>
+            </div>
+            <ProductsContainer products={this.state.products}
+                               onRemove={(product, isCompared) => this.handleChangeList(product, isCompared)}
+                               onCompare={(product, isCompared) => this.handleChangeList(product, isCompared)}
+                               onEdit={(product) => this.onEdit(product)} />
+            <CompareContainer compareProducts={this.state.compareProducts}/>
+
+            <ProductEdit  title="Edit Product"
+                          editProductIsOpened={this.state.editProductIsOpened}
+                          product={this.state.productToEdit}
+                          buttonName = "Save"
+                          onUpdateProduct={(product) => this.saveProduct(product)}/>
+
         </div>
-        {productsContainer}
-        {compareContainer}
-      </div>
-    );
-  }
+      )
+    }
 }
 
 export default StartPage
